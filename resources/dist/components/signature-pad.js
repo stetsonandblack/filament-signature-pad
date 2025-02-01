@@ -393,7 +393,7 @@ function E(g, t) {
             })
         },
         save() {
-            this.state = this.signaturePad.toDataURL("image/svg+xml"), this.resizeCanvas()
+            this.state = this.signaturePad.toDataURL("image/jpeg"), this.resizeCanvas()
         },
         clear() {
             this.signaturePad.clear(), this.state = null, this.resizeCanvas()
