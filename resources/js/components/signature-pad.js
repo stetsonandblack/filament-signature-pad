@@ -50,8 +50,8 @@ export default function signaturePad(state, args) {
             }, {once: false});
         },
         save() {
-            this.state = this.signaturePad.toDataURL('image/svg+xml');
-            // this.state = this.signaturePad.toDataURL('image/png');
+            //this.state = this.signaturePad.toDataURL('image/svg+xml');
+             this.state = this.signaturePad.toDataURL('image/png');
             // this.state = this.signaturePad.toSVG();
             // this.$dispatch('signature-saved', this.signaturePadId);
             // console.log(this.state);
