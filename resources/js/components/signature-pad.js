@@ -50,7 +50,7 @@ export default function signaturePad(state, args) {
             }, {once: false});
         },
         save() {
-            //this.state = this.signaturePad.toDataURL('image/svg+xml');
+            //this.state = this.signaturePad.toDataURL('image/png');
              this.state = this.signaturePad.toDataURL('image/png');
             // this.state = this.signaturePad.toSVG();
             // this.$dispatch('signature-saved', this.signaturePadId);
@@ -103,7 +103,7 @@ export default function signaturePad(state, args) {
             if (this.signaturePad.isEmpty()) {
                 alert("Please provide a signature first.");
             } else {
-                const dataURL = this.signaturePad.toDataURL('image/svg+xml');
+                const dataURL = this.signaturePad.toDataURL('image/png');
                 this.download(dataURL, "signature.svg");
             }
         },
