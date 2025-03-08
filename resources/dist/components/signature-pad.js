@@ -375,6 +375,7 @@ function E(g, t) {
                 console.error("Canvas is not present");
                 return
             }
+            this.resizeCanvas();
             this.signaturePad = new f(this.canvas, {
                 dotSize: this.dotSize || 2,
                 minWidth: this.minWidth || 1,
@@ -409,7 +410,7 @@ function E(g, t) {
             canva.width = dimensions.width * this.ratio;
             canva.height = dimensions.height * this.ratio;
             canva.getContext('2d').scale(this.ratio, this.ratio);
-            //this.signaturePad.clear();
+            this.signaturePad.clear();
             if (this.state) {
                 this.signaturePad.fromDataURL(this.state)
             } else {
