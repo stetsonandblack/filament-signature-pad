@@ -375,7 +375,6 @@ function E(g, t) {
                 console.error("Canvas is not present");
                 return
             }
-            this.resizeCanvas();
             this.signaturePad = new f(this.canvas, {
                 dotSize: this.dotSize || 2,
                 minWidth: this.minWidth || 1,
@@ -383,7 +382,12 @@ function E(g, t) {
                 minDistance: this.minDistance || 2,
                 penColor: this.penColor || "rgb(0,0,0)",
                 backgroundColor: this.backgroundColor || "rgba(255,255,255,0)"
-            }), window.addEventListener("resize", e => this.resizeCanvas()), this.resizeCanvas(), this.signaturePad.addEventListener("beginStroke", () => {}, {
+            }), window.addEventListener("resize", e => this.resizeCanvas()), this.resizeCanvas(), this.signaturePad.addEventListener("beginStroke", () => {
+
+                    this.resizeCanvas();
+
+                
+            }, {
                 once: !1
             }), this.signaturePad.addEventListener("endStroke", e => {
                 this.save(), this.resizeCanvas()
@@ -401,26 +405,18 @@ function E(g, t) {
         },
         resizeCanvas() {
 
-
-            const canva = this.canvas;
+             console.log('resizeCanvas')
             this.ratio = Math.max(window.devicePixelRatio || 1, 1);
-            let dimensions = this.getCanvasOffsetDimensions();
-            // console.log(dimensions.width);
-            // console.log(dimensions.height);
-            canva.width = dimensions.width * this.ratio;
-            canva.height = dimensions.height * this.ratio;
-            canva.getContext('2d').scale(this.ratio, this.ratio);
-            this.signaturePad.clear();
-            if (this.state) {
+            console.log(this.ratio)
+            this.$refs.canvas.width = this.$refs.canvas.offsetWidth * this.ratio;
+            this.$refs.canvas.height = this.$refs.canvas.offsetHeight * this.ratio;
+            this.$refs.canvas.getContext("2d").scale(this.ratio, this.ratio);
+
+            if (this.state && this.signaturePad ) {
                 this.signaturePad.fromDataURL(this.state)
             } else {
                 this.signaturePad?.fromData(this.signaturePad.toData());
             }
-
-           /** this.ratio = Math.max(window.devicePixelRatio || 1, 1);
-            this.$refs.canvas.width = this.$refs.canvas.offsetWidth * this.ratio;
-            this.$refs.canvas.height = this.$refs.canvas.offsetHeight * this.ratio;
-            this.$refs.canvas.getContext('2d').scale(this.ratio, this.ratio);**/
 
             /**
             let e = this.canvas;
