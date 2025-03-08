@@ -399,11 +399,23 @@ function E(g, t) {
             this.signaturePad.clear(), this.state = null, this.resizeCanvas()
         },
         resizeCanvas() {
+
+            this.ratio = Math.max(window.devicePixelRatio || 1, 1);
+            this.$refs.canvas.width = this.$refs.canvas.offsetWidth * this.ratio;
+            this.$refs.canvas.height = this.$refs.canvas.offsetHeight * this.ratio;
+            this.$refs.canvas.getContext('2d').scale(this.ratio, this.ratio);
+
+            /**
             let e = this.canvas;
             this.ratio = Math.max(window.devicePixelRatio || 1, 1);
             let i = this.getCanvasOffsetDimensions();
             e.width = i.width * this.ratio, e.height = i.height * this.ratio, e.getContext("2d").scale(this.ratio, this.ratio), this.signaturePad.clear(), this.state ? this.signaturePad.fromDataURL(this.state) : this.signaturePad?.fromData(this.signaturePad.toData())
+            **/
+
+
         },
+
+
         getCanvasOffsetDimensions() {
             let e = this.canvas,
                 i = e.cloneNode(!0);
