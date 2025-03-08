@@ -400,10 +400,26 @@ function E(g, t) {
         },
         resizeCanvas() {
 
+
+            const canva = this.canvas;
             this.ratio = Math.max(window.devicePixelRatio || 1, 1);
+            let dimensions = this.getCanvasOffsetDimensions();
+            // console.log(dimensions.width);
+            // console.log(dimensions.height);
+            canva.width = dimensions.width * this.ratio;
+            canva.height = dimensions.height * this.ratio;
+            canva.getContext('2d').scale(this.ratio, this.ratio);
+            //this.signaturePad.clear();
+            if (this.state) {
+                this.signaturePad.fromDataURL(this.state)
+            } else {
+                this.signaturePad?.fromData(this.signaturePad.toData());
+            }
+
+           /** this.ratio = Math.max(window.devicePixelRatio || 1, 1);
             this.$refs.canvas.width = this.$refs.canvas.offsetWidth * this.ratio;
             this.$refs.canvas.height = this.$refs.canvas.offsetHeight * this.ratio;
-            this.$refs.canvas.getContext('2d').scale(this.ratio, this.ratio);
+            this.$refs.canvas.getContext('2d').scale(this.ratio, this.ratio);**/
 
             /**
             let e = this.canvas;
