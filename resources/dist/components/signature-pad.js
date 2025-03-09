@@ -382,12 +382,7 @@ function E(g, t) {
                 minDistance: this.minDistance || 2,
                 penColor: this.penColor || "rgb(0,0,0)",
                 backgroundColor: this.backgroundColor || "rgba(255,255,255,0)"
-            }), window.addEventListener("resize", e => this.resizeCanvas()), this.resizeCanvas(), this.signaturePad.addEventListener("beginStroke", () => {
-
-                    this.resizeCanvas();
-
-                
-            }, {
+            }), window.addEventListener("resize", e => this.resizeCanvas()), this.resizeCanvas(), this.signaturePad.addEventListener("beginStroke", () => {}, {
                 once: !1
             }), this.signaturePad.addEventListener("endStroke", e => {
                 this.save(), this.resizeCanvas()
@@ -405,25 +400,15 @@ function E(g, t) {
         },
         resizeCanvas() {
 
-             console.log('resizeCanvas')
-            this.ratio = Math.max(window.devicePixelRatio || 1, 1);
-            console.log(this.ratio)
-            this.$refs.canvas.width = this.$refs.canvas.offsetWidth * this.ratio;
-            this.$refs.canvas.height = this.$refs.canvas.offsetHeight * this.ratio;
-            this.$refs.canvas.getContext("2d").scale(this.ratio, this.ratio);
-
-            if (this.state && this.signaturePad ) {
-                this.signaturePad.fromDataURL(this.state)
-            } else {
-                this.signaturePad?.fromData(this.signaturePad.toData());
-            }
-
-            /**
+            console.log('resizeCanvas')
             let e = this.canvas;
             this.ratio = Math.max(window.devicePixelRatio || 1, 1);
             let i = this.getCanvasOffsetDimensions();
+
+            console.log(i);
+            
             e.width = i.width * this.ratio, e.height = i.height * this.ratio, e.getContext("2d").scale(this.ratio, this.ratio), this.signaturePad.clear(), this.state ? this.signaturePad.fromDataURL(this.state) : this.signaturePad?.fromData(this.signaturePad.toData())
-            **/
+            
 
 
         },
